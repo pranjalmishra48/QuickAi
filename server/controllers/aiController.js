@@ -103,7 +103,7 @@ export const generateImage = async (req, res) => {
     if (plan !== "premium") {
       return res
         .status(403)
-        .json({ success: false, message: "Premium feature only." });
+        .json({ success: false, message: " For Premium Subscriptions only." });
     }
 
     const formData = new FormData();
@@ -146,7 +146,7 @@ export const removeImageBackground = async (req, res) => {
     if (plan !== "premium") {
       return res
         .status(403)
-        .json({ success: false, message: "Premium feature only." });
+        .json({ success: false, message: "For Premium Subscriptions only." });
     }
 
     const { secure_url } = await cloudinary.uploader.upload(image.path, {
@@ -180,7 +180,7 @@ export const removeImageObject = async (req, res) => {
     if (plan !== "premium") {
       return res
         .status(403)
-        .json({ success: false, message: "Premium feature only." });
+        .json({ success: false, message: "For Premium Subscriptions only." });
     }
 
     const { public_id } = await cloudinary.uploader.upload(image.path);
@@ -211,7 +211,7 @@ export const resumeReview = async (req, res) => {
     if (plan !== "premium") {
       return res
         .status(403)
-        .json({ success: false, message: "Premium feature only." });
+        .json({ success: false, message: "For Premium Subscriptions only." });
     }
 
     if (resume.size > 5 * 1024 * 1024) {
