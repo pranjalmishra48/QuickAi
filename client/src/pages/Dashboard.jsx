@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { dummyCreationData } from '../assets/assets'
+import React, { useCallback, useEffect, useState } from 'react'
+import {} from '../assets/assets'
 import { Gem, Sparkles } from 'lucide-react'
 import { Protect, useAuth } from '@clerk/clerk-react'
 import CreationItem from '../components/CreationItem'
@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const { getToken } = useAuth()
 
-  const getDashboardData = async ()=>{
+  const getDashboardData = useCallback(async ()=>{
     try {
       const {data} = await axios.get('/api/user/get-user-creations', {headers: {Authorization: `Bearer ${await getToken()}`}})
       if(data.success){
@@ -26,11 +26,11 @@ const Dashboard = () => {
       toast.error(error.message)
     }
     setLoading(false)
-  }
+  },[getToken])
 
   useEffect(()=>{
     getDashboardData()
-  }, [])
+  }, [getDashboardData])
 
   return (
     <div className='h-full overflow-y-scroll p-6'>
